@@ -1,0 +1,15 @@
+<section>
+  <form action="/vote" method="post" class="content" id="vote_form">
+    <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+    <h3><%= poll.title %></h3>
+    <ul class="items">
+      <% _.each(poll.items, function (item) { %>
+        <li><a href="#" data-item="<%= item.id %>"><i class="icon-checkmark"></i><%= item.name %></a></li>
+      <% }) %>
+    </ul>
+    <hr />
+    <button class="pure-button button-success"><i class="icon-thumbs-up left"></i>Vote!</button>
+    <a href="/poll/results/<%= poll.id %>" class="small">or view results</a>
+    <input type="hidden" name="item_id" />
+  </form>
+</section>
