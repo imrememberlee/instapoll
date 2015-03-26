@@ -1,0 +1,23 @@
+<section>
+  <form action="/session/create" method="post" class="content pure-form pure-form-stacked">
+    <% if(_.any(flash)) { %>
+      <p class="flash <%= _.first(Object.keys(flash)) %>">
+        <% Object.keys(flash).forEach(function(msg) { %>
+          <%= flash[msg] %>
+        <% }) %>
+      </p>
+    <% } %>
+    <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+    <fieldset>
+      <legend>Log in to your account</legend>
+
+      <input id="username" type="text" name="username" placeholder="Username..."  required />
+      <input id="password" type="password" name="password" placeholder="Password..." required />
+
+      <button type="submit" class="pure-button button-success"><i class="icon-forward left"></i>Log in!</button>
+    </fieldset>
+    <hr />
+    <a href="/session/facebook" class="pure-button button-facebook split"><i class="icon-facebook left"></i>Connect with Facebook</a>
+    <a href="/session/twitter" class="pure-button button-twitter split"><i class="icon-twitter left"></i>Sign in with Twitter</a>
+  </form>
+</section>

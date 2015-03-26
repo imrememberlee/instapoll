@@ -1,0 +1,187 @@
+/*** BOURBON/NEAT ***/
+@import "bourbon/bourbon";
+@import "grid-settings";
+@import "neat/neat";
+@mixin omega-reset($nth, $fg-gutter) {
+  &:nth-child(#{$nth}) { margin-right: flex-gutter($fg-gutter); }
+  &:nth-child(#{$nth}+1) { clear: none }
+}
+/*** BOURBON/NEAT ***/
+
+/*** COLORS/FONTS ***/
+$body-bg: #fff;
+$true-blue: #0078e7;
+$green: rgb(28, 184, 65);
+$lato: 'Lato', $helvetica;
+$helvetica: Helvetica, Arial, sans-serif;
+/*** COLORS/FONTS ***/
+
+body {
+  font-family: $lato;
+  font-size: 16px;
+  background-color: $body-bg;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 5px;
+  a { color: #000; text-decoration: none; }
+  i.icon-megaphone { vertical-align: top; margin-left: 5px; }
+}
+
+h3 {
+  margin: 0.25em 0 1em 0;
+  &.polls { margin: 1.25em 0 0.25em 0; }
+}
+
+p.center { text-align: center; }
+p.flash {
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  color: #333;
+  &.err { background-color: #fcc; }
+  &.success { background-color: #afa; }
+  &.msg { background-color: #eef; }
+}
+
+section {
+  @include outer-container;
+  padding: 20px;
+  .content {
+    @include span-columns(6);
+    @include shift(3);
+    fieldset {
+      legend {
+        font-size: 20px;
+        font-weight: bold;
+      }
+    }
+    textarea { width: 100%; }
+    @include media($tablet) {
+      @include span-columns(8);
+      @include shift(2);
+    }
+    @include media($mobile) {
+      @include span-columns(6);
+      @include shift(0);
+      input[type=text], input[type=email], input[type=password] { width: 91%; }
+    }
+    a.add-item {
+      display: block;
+      margin: 12px 0;
+      padding: 2px 0;
+      color: $true-blue;
+      text-decoration: none;
+    }
+    ul.items {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li a, &.results li {
+        display: inline-block;
+        padding: 4px 20px 8px 14px;
+        margin-bottom: 10px;
+        background-color: $true-blue;
+        color: #fff;
+        opacity: 0.6;
+        text-decoration: none;
+        border-radius: 4px;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        @include transition(all, .2s);
+        &:hover, &.active {
+          opacity: 1;
+          i { color: #fff; }
+        }
+        i {
+          color: tint($true-blue, 40%);
+          margin-right: 8px;
+          @include transition(all, .2s);
+        }
+      }
+      &.results li {
+        position: relative;
+        display: block;
+        opacity: 1;
+        color: #333;
+        padding: 6px 14px;
+        border: 1px solid #ccc;
+        background-color: #f6f6f6;
+        overflow: hidden;
+        .bg {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 0%;
+          height: 100%;
+          background-color: tint($true-blue, 40%);
+          @include transition(all, .2s);
+        }
+        &:first-child .bg {
+          background-color: $green;
+        }
+        .item {
+          position: relative;
+          margin: 0;
+          padding: 0;
+          float: left;
+          &.lite { color: #fff; }
+        }
+        span {
+          position: relative;
+          float: right;
+        }
+      }
+    }
+    ul.polls {
+      margin: 0.5em 0;
+    }
+    &.pure-form-stacked input {
+      margin: 0.25em 0 0.5em 0;
+      &.error { border-color: #ca3c3c; }
+    }
+    &.pure-form-stacked input[type=text] { display: inline-block; }
+    a.remove-item {
+      color: #ca3c3c;
+      text-decoration: none;
+      i { margin-left: 5px; }
+    }
+    &#vote_form {
+      //h3 { float: left; }
+      button {
+        opacity: 0.6;
+        @include transition(all, .5s);
+        &.enabled { opacity: 1; }
+      }
+    }
+    .addthis_toolbox { float: right; margin-top: 16px; }
+    button, a.pure-button {
+      &.full { @include span-columns(12); }
+      &.split {
+        @include span-columns(6);
+        &.button-facebook, &.button-twitter {
+          @include media($tablet) {
+            @include span-columns(12);
+            margin-bottom: 5px;
+          }
+        }
+      }
+      &.pad { margin: 10px 0; }
+      &.pure-button { margin-top: 5px; }
+      i.left { margin-right: 10px; vertical-align: 0; }
+      i.right { margin-left: 5px; vertical-align: text-bottom; }
+    }
+    hr {
+      height: 1px;
+      border: none;
+      color: #e5e5e5;
+      background-color: #e5e5e5;
+    }
+    a.small {
+      display: inline-block;
+      font-size: 12px;
+      margin-left: 10px;
+    }
+  }
+}
